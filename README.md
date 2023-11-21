@@ -3,11 +3,11 @@ Arduino sketch without dependencies
 
 Written By Aaron Hope, MPH, MsDa, hope.aaron.c@gmail.com, November 2023
 
-Currently, the FCC requires that repeaters self-identify.  The least invasive way to perform that action has proven to be using morse code also known as CW.  I found that repeater contollers require me to solder wiring ont the board of a radio, which I find to be risky given the prices.
+Currently, the FCC requires that GMRS and Ham radio repeaters self-identify.  The least invasive way to perform that action has proven to be using morse code also known as CW.  I found that repeater contollers require me to solder wiring ont the board of a radio, which I find to be risky given the prices.
 
-This project is meant to use a common UV5R radio tuned to the repeater frequencies and tones to perform the action.
+This project is meant to use a common UV5R radio tuned to the repeater frequencies and tones to perform the action.  With this simple method, any frequency touchable by a UV5R can be identified with this tool.
 
-Necessary hardware includes an arduino board, 5v relay, a K1 plug and wire, and the UV5R.
+Necessary hardware includes an arduino board, 5v relay, I2C oled screen, a K1 plug and wire, and the UV5R.
 
 I also intendo to incorporate an IC2 compliant OLED to display the status of the system.
 

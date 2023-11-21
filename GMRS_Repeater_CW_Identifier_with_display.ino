@@ -3,14 +3,13 @@
 // The short wait transmission is the initial CW message
 // The long wait transmission is for the periodic CW requirement
 
-// including libraries
-#include <Wire.h>  // might not need
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#define SCREEN_WIDTH 128  // OLED display width, in pixels
-#define SCREEN_HEIGHT 64  // OLED display height, in pixels
-
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+// including libraries because they're actually necessary
+#include <Wire.h>                                                  // might not need
+#include <Adafruit_GFX.h>                                          // graphics good
+#include <Adafruit_SSD1306.h>                                      // device driver
+#define SCREEN_WIDTH 128                                           // OLED display width, in pixels
+#define SCREEN_HEIGHT 64                                           // OLED display height, in pixels
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);  // thanks internet
 
 // defining pins
 #define pin_audio_input A1
@@ -381,4 +380,3 @@ void loop() {
       // to 2 for transmit
 
 }  // end of primary loop
-
