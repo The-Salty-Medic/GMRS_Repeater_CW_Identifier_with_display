@@ -1,9 +1,7 @@
 # GMRS_Repeater_CW_Identifier
 Arduino sketch without dependencies
 
-Written By Aaron Hope, MPH, MsDa
-hope.aaron.c@gmail.com
-November 2023
+Written By Aaron Hope, MPH, MsDa, hope.aaron.c@gmail.com, November 2023
 
 Currently, the FCC requires that repeaters self-identify.  The least invasive way to perform that action has proven to be using morse code also known as CW.  I found that repeater contollers require me to solder wiring ont the board of a radio, which I find to be risky given the prices.
 
