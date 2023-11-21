@@ -1,8 +1,17 @@
 // Written by Aaron Hope and ripped off from everywhere
-// This is built to run without dependencies
 // This vision has two transmission functions, short wait and long wait
 // The short wait transmission is the initial CW message
 // The long wait transmission is for the periodic CW requirement
+
+
+// including libraries
+#include <Wire.h>  // might not need
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#define SCREEN_WIDTH 128  // OLED display width, in pixels
+#define SCREEN_HEIGHT 64  // OLED display height, in pixels
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 // defining pins
 #define pin_audio_input A1
@@ -25,6 +34,7 @@ const long tone_hz = 1200;                                     // feel free to c
 
 // begin mutable parameters
 int System_Status = 0;         // tracking this as we go for visual display
+int Display_Status = 0;        // set to follow the system status for display
 int Reception_Flag = 0;        // hearing test flashbacks
 int Transmission_Flag = 0;     // used to track transmission politeness
 long current_audio_level = 0;  // to be modified over time
@@ -152,6 +162,21 @@ void loop() {
 
       if (System_Status == 0) {
             Reception_Flag = 0;
+
+            // to keep display from flickering
+            if (Display_Status != 0) {
+                  // update display to status 0 only if it wasn't already set to 0 tktk
+
+                  Display_Status = 0;
+                  display.setTextSize(2);
+                  display.setCursor(0, 0);
+                  display.print("System Status = ");
+                  display.print(Display_Status);
+                  display.setTextSize(1);
+                  display.setCursor(0, 20);
+                  display.print("Waiting for Audio Input");
+            }
+
             while (System_Status == 0) {
                   delay(Audio_Confirmation_Delay);
 
@@ -175,6 +200,17 @@ void loop() {
       // to 1 when triggered
 
       if (System_Status == 1) {
+
+            // update display status tktk
+            Display_Status = 1;
+            display.setTextSize(2);
+            display.setCursor(0, 0);
+            display.print("System Status = ");
+            display.print(Display_Status);
+            display.setTextSize(1);
+            display.setCursor(0, 20);
+            display.print("Politely waiting to transmit");
+
             while (System_Status = 1) {
 
                   // if the line is quiet for a full second
@@ -198,6 +234,17 @@ void loop() {
       // to 2
 
       if (System_Status == 2) {
+
+            // update display status tktk
+            Display_Status = 2;
+            display.setTextSize(2);
+            display.setCursor(0, 0);
+            display.print("System Status = ");
+            display.print(Display_Status);
+            display.setTextSize(1);
+            display.setCursor(0, 20);
+            display.print("Transmitting CW");
+
             digitalWrite(pin_ptt_switch, HIGH);  // activates relay, forcing PTT function
             delay(Audio_Confirmation_Delay);     // pause before send because reasons
 
@@ -228,6 +275,17 @@ void loop() {
       // to 3
 
       if (System_Status = 3) {
+
+            // update display status tktk
+            Display_Status = 3;
+            display.setTextSize(2);
+            display.setCursor(0, 0);
+            display.print("System Status = ");
+            display.print(Display_Status);
+            display.setTextSize(1);
+            display.setCursor(0, 20);
+            display.print("Waiting for Secondary Confirmation");
+
             Long_CW_Timer = 0;
             Reception_Flag = 0;
 
@@ -259,6 +317,17 @@ void loop() {
       // to 4 if there was enough audio or 0 if not enough audio
 
       if (System_Status = 4) {
+
+            // update display status tktk
+            Display_Status = 4;
+            display.setTextSize(2);
+            display.setCursor(0, 0);
+            display.print("System Status = ");
+            display.print(Display_Status);
+            display.setTextSize(1);
+            display.setCursor(0, 20);
+            display.print("Signal Confirmed, transmitting soon");
+
             while (System_Status == 4) {
 
                   delay(Audio_Confirmation_Delay);
@@ -273,6 +342,17 @@ void loop() {
       // to 5
 
       if (System_Status = 5) {
+
+            // update display status tktk
+            Display_Status = 5;
+            display.setTextSize(2);
+            display.setCursor(0, 0);
+            display.print("System Status ");
+            display.print(Display_Status);
+            display.setTextSize(1);
+            display.setCursor(0, 20);
+            display.print("Politely waiting to transmit");
+
             Transmission_Flag = 0;
             while (System_Status == 5) {
 
