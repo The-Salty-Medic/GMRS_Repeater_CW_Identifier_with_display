@@ -3,7 +3,6 @@
 // The short wait transmission is the initial CW message
 // The long wait transmission is for the periodic CW requirement
 
-
 // including libraries
 #include <Wire.h>  // might not need
 #include <Adafruit_GFX.h>
@@ -157,9 +156,7 @@ void loop() {
       // establish length of CW to be sent
       int Encoded_CW_Length = Encoded_FCC_Call_Sign.length();
 
-
       // open version of case switching based on system status
-
       if (System_Status == 0) {
             Reception_Flag = 0;
 
